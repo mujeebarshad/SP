@@ -4,7 +4,8 @@ allFiles=( `ls` )
 for i in ${allFiles[@]}
 do
 	echo $i
-	IFS=$'.' exten=( $i )
+	IFS=$'.' exten=( $i ) 
+	# exten stores extension name of file at index 1
 	if [ -d ${exten[1]} ]
 	then
 		IFS=$" "
