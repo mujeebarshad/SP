@@ -4,17 +4,19 @@
 int main()
 { 
 	char buff[1024]; 
-	close(2);
+	//close(2);
 	int fd1 = open ("f1.txt", O_RDONLY); 
 	int fd2 = dup(fd1); 
 	int fd3 = open("f2.txt", O_APPEND|O_WRONLY);
+	dup2(fd3,1);
+	dup2(fd3,2);
 	if(fd2 < 0)
 	{
 		
-		close(1);
+		//close(1);
 		close(fd1);
 		close(fd2);
-		dup2(2,fd3);
+		//dup2(2,fd3);
 		perror("Error!");
 		return 0;
 	}
@@ -25,12 +27,12 @@ int main()
 			n = read (fd2, buff, 1023); 
 			if (n <= 0)
 			{ 
-				close(1);
+				//close(1);
 				close(fd1); 
 				close(fd2); 
 				return 0; 
 			} 
-			write(fd3, buff, n); 
+			write(1, buff, n); 
 		}
 		//end of for loop return 0;
 	
